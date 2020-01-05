@@ -7,12 +7,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class ControllerClass {
 
 	@Autowired
 	private ServiceClass serviceClass;
+	
+	@RequestMapping("/")
+	public String defaultEnd() {
+		return "Hello";
+	}
 	
 	@GetMapping("/v1/addUSer/{msisdn}")
 	public ResponseEntity<?> addNewUser(@PathVariable("msisdn") String msisdn) {
