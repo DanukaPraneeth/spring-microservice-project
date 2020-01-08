@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class KafkaRouteProducer extends RouteBuilder {
 	
     @Autowired
-	KafkaEndpoint endpointForProducer;
+	private KafkaEndpoint endpointForProducer;
 		
 	@Override
 	public void configure() throws Exception {

@@ -3,17 +3,16 @@ package com.myapps.microservice.httpprocessorservice;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.kafka.KafkaEndpoint;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class KafkaRouteProducer extends RouteBuilder {
 
     @Autowired
-    public KafkaEndpoint endpointForConsumer;
+    private KafkaEndpoint endpointForConsumer;
 
     @Autowired
-    public KafkaEndpoint endpointForProducer;
+    private KafkaEndpoint endpointForProducer;
     
     @Autowired
     private TransformProcess transformProcess;
@@ -30,6 +29,5 @@ public class KafkaRouteProducer extends RouteBuilder {
         .log("Successfully delivered the transformed request to the adapter topic:")
         .end();    
 	}
-	
 
 }

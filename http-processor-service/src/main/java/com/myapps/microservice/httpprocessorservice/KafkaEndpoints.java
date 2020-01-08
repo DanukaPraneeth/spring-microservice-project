@@ -10,15 +10,28 @@ public class KafkaEndpoints {
 
     @Bean
     public KafkaEndpoint endpointForProducer() {
-        return createKafkaConfigs("test-topic-result");
+        return createKafkaProducer("test-topic-result");
     }
     
     @Bean
     public KafkaEndpoint endpointForConsumer() {
-        return createKafkaConfigs("test-topic");
+        return createKafkaConsumer("test-topic");
     }
     
-    protected KafkaEndpoint createKafkaConfigs(String topicName) {
+    protected KafkaEndpoint createKafkaProducer(String topicName) {
+        KafkaEndpoint kafkaEndpoint = new KafkaEndpoint();
+        KafkaConfiguration config = new KafkaConfiguration();
+        String broker = "localhost:9092";
+        config.setBrokers(broker);
+        config.setTopic(topicName);
+        config.setKeySerializerClass("org.apache.kafka.common.serialization.StringSerializer");
+        config.setKeyDeserializer("org.apache.kafka.common.serialization.StringDeserializer");
+        config.setValueDeserializer("org.apache.kafka.common.serialization.StringDeserializer");
+        kafkaEndpoint.setConfiguration(config);
+        return kafkaEndpoint;
+    }
+    
+    protected KafkaEndpoint createKafkaConsumer(String topicName) {
         KafkaEndpoint kafkaEndpoint = new KafkaEndpoint();
         KafkaConfiguration config = new KafkaConfiguration();
         String broker = "localhost:9092";
