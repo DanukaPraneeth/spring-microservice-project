@@ -3,15 +3,18 @@ package com.myapps.microservice.httpprocessorservice;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.kafka.KafkaEndpoint;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class KafkaRouteProducer extends RouteBuilder {
 
     @Autowired
+	@Qualifier("endPointConsumer")
     private KafkaEndpoint endpointForConsumer;
 
     @Autowired
+	@Qualifier("endPointProducer")
     private KafkaEndpoint endpointForProducer;
     
     @Autowired

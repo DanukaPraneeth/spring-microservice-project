@@ -8,12 +8,12 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class KafkaEndpoints {
 
-    @Bean
+    @Bean(name = "endPointProducer")
     public KafkaEndpoint endpointForProducer() {
         return createKafkaProducer("test-topic-result");
     }
     
-    @Bean
+    @Bean(name = "endPointConsumer")
     public KafkaEndpoint endpointForConsumer() {
         return createKafkaConsumer("test-topic");
     }
